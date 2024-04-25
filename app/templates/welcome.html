@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+{%block navbar%}
+    {% include "./base/navbar.html" %}
+{%endblock navbar%}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
+        <title>Transcendence</title>
+    </head>
+{%block content%}    
+    <body class="w-100">
+        <div class="mx-5 mt-3">
+        <h4 class="text-white">PINGPONG</h4>
+        <div class="information-container p-3 mt-2 text-white">
+            <p class="fw-lighter fs-4 mb-2">👋 Bienvenue, <span class="fw-bold">{{ user.get_username }} !</span></p>
+            <p class="fw-medium fs-6">Vous êtes actuellement sur la page d’accueil, Si vous souhaitez jouer à un super jeu. Vous pouvez cliquer sur la catégorie “Jeu” Dans la barre de navigation ci-dessus</p>
+        </div>
+        {% if friends %}
+        <div class="friends-container mt-3">
+            <p class="fw-bold fs mb-0 text-white text-center">Mes Amis</p>
+            <div class="d-flex justify-content-center mt-2">
+                <p class="text-white text-center">Vous avez {{ friends|length }} amis</p>
+            </div>                
+        </div>   
+        <div class="row">
+        {% for friend in friends %}
+          <div class="col d-flex justify-content-center">
+                <div class="user-card p-3 bg-darkdark text-white rounded-2">
+                    <img src="{{ friend.profile_image }}" class="rounded-circle" width="100" height="100">
+                    <p class="fw-bold fs-5 text-center">{{ friend.username }}</p>
+                    
+                    <div class="d-flex justify-content-center items-center">
+                        <p class="text-white fw-lighter fs-6 text-center">{{ friend.is_online }}</p>
+                    </div>
+                </div>
+          </div>
+      {% endfor %}
+      </div>
+    {% endif %}
+    </body>
+{%endblock content%}
+</html>

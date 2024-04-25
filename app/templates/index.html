@@ -1,0 +1,43 @@
+{%extends 'welcome.html'%}
+{%block navbar%}
+{%endblock navbar%}
+<!DOCTYPE html>
+{% load static %}
+{%block content%}
+<html lang="en">
+<head>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+    <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}"></link>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" >
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="{% static 'js/validateForm.js' %}"></script>
+    <title>Transcendence</title>
+</head>
+    <body class="login">
+        <div class="login-container mx-5">
+            <h1 class="text-white fs-2 fw-bold mb-4 text-center">PINGPONG</h1>
+
+            <form method="POST" onsubmit="return validateForm()">
+                {% csrf_token %}
+                <div class="mb-4">
+                    {{ form.usernames.label_tag }}
+                    {{ form.usernames }}
+                </div>
+                <div class="mb-4">
+                    {{ password_form.label_tag }}
+                    {{ password_form }}
+                </div>
+                <h6 class="text-center text-danger mb-3">{{ message }}</h6>
+                <button type="submit" class="btn btn-primary custom-btn custom-btn-width">Connexion</button>
+                <h6 class="text-center mt-3 text-white">Pas encore inscrit ? <a href="{% url 'register' %}" class="text-decoration-none">Ici</a></h6>
+            </form>
+        </div>
+    </body>
+{%endblock content%}
+</html>
+
